@@ -21,6 +21,11 @@ const productData = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category', // reference to the category model
         required: true
+    },
+
+    image: {
+        type: String,
+        required: false
     }
 });
 
