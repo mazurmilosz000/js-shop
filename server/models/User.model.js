@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
+import joi from 'joi';
 
 const userData = new mongoose.Schema({
     name: {
@@ -32,4 +33,20 @@ const userData = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', userData);
+const User = mongoose.model('User', userData);
+
+// fixme:
+const validateUser = (user) => {
+    const schema = joi.object({
+        name : joi.string().min(3).max(100).required(),
+        email: joi.string().min(5).max(255).required().email(),
+        password: joi.string().min(8).max(100).required()
+    })
+    return schema.validate(user);
+}
+
+const checkIfUserExists = async (email) => {
+    return User.findOne({ email });
+};
+
+export { User, validateUser, checkIfUserExists };

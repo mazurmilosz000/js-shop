@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const Category = require('../models/Category.model');
-const { handleErrorResponse, checkValidityOfIdParameter } = require('../utils/errorHandler')
+import Category from '../models/Category.model.js';
+import { handleErrorResponse, checkValidityOfIdParameter } from '../utils/errorHandler.js';
 
-const createCategory = async (req, res) => {
+export const createCategory = async (req, res) => {
     try {
         const { name, description } = req.body;
 
@@ -18,18 +17,18 @@ const createCategory = async (req, res) => {
     } catch (error) {
         handleErrorResponse(res, 'An error occurred while creating category', error);
     }
-}
+};
 
-const getAllCategories = async (req, res) => {
+export const getAllCategories = async (req, res) => {
     try {
         const categories = await Category.find();
         res.status(200).json(categories);
     } catch (error) {
         handleErrorResponse(res, 'An error occurred while retrieving categories', error);
     }
-}
+};
 
-const getCategoryById = async (req, res) => {
+export const getCategoryById = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -44,9 +43,9 @@ const getCategoryById = async (req, res) => {
     } catch (error) {
         handleErrorResponse(res, 'An error occurred while retrieving the category', error);
     }
-}
+};
 
-const deleteCategoryById = async (req, res) => {
+export const deleteCategoryById = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -64,11 +63,4 @@ const deleteCategoryById = async (req, res) => {
     } catch (error) {
         handleErrorResponse(res, 'An error occurred while deleting the category', error);
     }
-};
-
-module.exports = {
-    createCategory,
-    getAllCategories,
-    getCategoryById,
-    deleteCategoryById
 };
