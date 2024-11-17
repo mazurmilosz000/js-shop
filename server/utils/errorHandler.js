@@ -1,17 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const handleErrorResponse = (res, errorMsg, error, statusCode = 500) => {
+export const handleErrorResponse = (res, errorMsg, error, statusCode = 500) => {
     console.error('%s: %s', errorMsg, error);
     res.status(500).json({error: errorMsg});
 };
 
-const checkValidityOfIdParameter = (id) => {
+export const checkValidityOfIdParameter = (id) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: 'Invalid category ID format' }); 
     }
 };
-
-module.exports = {
-    handleErrorResponse,
-    checkValidityOfIdParameter
-}
