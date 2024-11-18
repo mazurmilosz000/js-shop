@@ -12,7 +12,7 @@ export const verifyToken = (req, res, next) => {
     // remove 'Bearer ' prefix
     const tokenWithoutBearerPrefix = token.split(' ')[1];
 
-    jwt.verify(tokenWithoutBearerPrefix, config.JWT_SECRET, (err, decoded) => {
+    jwt.verify(tokenWithoutBearerPrefix, config.ACCESS_TOKEN_SECRET, (err, decoded) => {
         if (err) {
             return res.status(401).json({ error: 'Unauthorized' });
         }
