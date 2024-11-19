@@ -11,6 +11,7 @@ import config from './config/config.js';
 import categoryRouter from './routes/Category.routes.js';
 import authRouter from './routes/Auth.routes.js';
 import userRouter from './routes/User.routes.js';
+import productRouter from './routes/Product.routes.js';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use('/api/category', categoryRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
+app.use('/api/product', productRouter);
 
 app.listen(PORT, () => {
     console.log('Server starter on port: %d', PORT);
