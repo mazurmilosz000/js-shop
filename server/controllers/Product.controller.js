@@ -32,7 +32,7 @@ export const getProductById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        checkValidityOfIdParameter(id);
+        checkValidityOfIdParameter(id, res);
 
         const product = await Product.findById(id);
         if (!product) {
@@ -49,7 +49,7 @@ export const updateProductById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        checkValidityOfIdParameter(id);
+        checkValidityOfIdParameter(id, res);
 
         const { name, description, price, category, image } = req.body;
 
@@ -73,7 +73,7 @@ export const deleteProductById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        checkValidityOfIdParameter(id);
+        checkValidityOfIdParameter(id, res);
 
         const deletedProduct = await Product.findByIdAndDelete(id);
         if (!deletedProduct) {

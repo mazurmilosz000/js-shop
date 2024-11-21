@@ -11,11 +11,11 @@ export const generateTokens = async (user) => {
 }
 
 export const generateAccessToken = async (user) => {
-    return jwt.sign({ email: user.email }, config.ACCESS_TOKEN_SECRET, { expiresIn: config.ACCESS_TOKEN_EXPIRATION });
+    return jwt.sign({ userId: user._id, email: user.email }, config.ACCESS_TOKEN_SECRET, { expiresIn: config.ACCESS_TOKEN_EXPIRATION });
 }
 
 export const generateRefreshToken = async (user) => {
-    return jwt.sign({ email: user.email }, config.REFRESH_TOKEN_SECRET, { expiresIn: config.REFRESH_TOKEN_EXPIRATION });
+    return jwt.sign({ userId: user._id, email: user.email }, config.REFRESH_TOKEN_SECRET, { expiresIn: config.REFRESH_TOKEN_EXPIRATION });
 }
 
 export const verifyToken = async (token, type) => {

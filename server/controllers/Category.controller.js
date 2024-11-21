@@ -32,7 +32,7 @@ export const getCategoryById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        checkValidityOfIdParameter(id);
+        checkValidityOfIdParameter(id, res);
 
         const category = await Category.findById(id);
         if (!category) {
@@ -49,7 +49,7 @@ export const deleteCategoryById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        checkValidityOfIdParameter(id);
+        checkValidityOfIdParameter(id, res);
 
         const deletedCategory = await Category.findByIdAndDelete(id);
         if (!deletedCategory) {

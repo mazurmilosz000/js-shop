@@ -5,8 +5,8 @@ export const handleErrorResponse = (res, errorMsg, error, statusCode = 500) => {
     res.status(500).json({error: errorMsg});
 };
 
-export const checkValidityOfIdParameter = (id) => {
+export const checkValidityOfIdParameter = (id, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: 'Invalid category ID format' }); 
+        return res.status(400).json({ error: 'Invalid ID format' }); 
     }
 };
